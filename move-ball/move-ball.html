@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        canvas {
+            background: #eee;
+        }
+    </style>
+    <script type="text/javascript">
+        var canvas = null;
+        var ctx = null;
+        var x = 0;
+        var y = 0;
+
+        function initalizeGround() {
+            canvas = document.getElementById("playGround");
+            ctx = canvas.getContext("2d");
+            x = canvas.width / 2;
+            y = canvas.height - 30;
+            drawBall();
+        }
+
+
+        function drawBall() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+
+        function moveLeft(distance) {
+            //sleep(3);
+            x = x - distance;
+            drawBall();
+        }
+        function moveRight(distance) {
+            //sleep(3);
+            x = x + distance;
+            drawBall();
+        }
+        function moveBottom(distance) {
+            //sleep(3);
+            y = y - distance;
+            drawBall();
+        }
+        function moveTop(distance) {
+            //sleep(3);
+            y = y + distance;
+            drawBall();
+        }
+        function sleep(seconds) {
+            var startTime = new Date().getTime() + (seconds * 1000);
+            var endTime = new Date().getTime();
+            while (endTime < startTime) {
+                endTime = new Date().getTime();
+            }
+        }
+
+        $(document).ready(function () {
+            initalizeGround();
+        });
+
+    </script>
+
+<body>
+    <canvas id="playGround" width="800" height="800"></canvas>
+</body>
+
+</html>
